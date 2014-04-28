@@ -5,11 +5,11 @@
  */
 
 package chess;
-
+import java.util.ArrayList;
 /**
  *
  * @author SANDHAMCR1
  */
 public class Opening {
-    
+    ArrayList<String> games;
 }

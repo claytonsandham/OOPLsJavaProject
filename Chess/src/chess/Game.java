@@ -5,11 +5,13 @@
  */
 
 package chess;
-
+import java.util.ArrayList;
 /**
  *
  * @author SANDHAMCR1
  */
 public class Game {
-    
+    ArrayList<String> events;
+    ArrayList <String> players;
+    ArrayList <String> openings;
 }
