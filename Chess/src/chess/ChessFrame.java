@@ -20,6 +20,7 @@ public class ChessFrame extends JFrame
 {
     Random rnd = new Random();
     ChessPanel panel = new ChessPanel();
+    JFrame frame = this;
     
     public ChessFrame() 
     {
@@ -63,13 +64,91 @@ public class ChessFrame extends JFrame
         JMenuItem gameMenuItem = new JMenuItem("Game");
         gameMenuItem.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                final JOptionPane optionPane = new JOptionPane(
-                "The only way to close this dialog is by\n"
-                + "pressing one of the following buttons.\n"
-                + "Do you understand?",
-                JOptionPane.QUESTION_MESSAGE,
-                JOptionPane.YES_NO_OPTION);
+            public void actionPerformed(ActionEvent e) 
+            {
+                
+                String event = (String)JOptionPane.showInputDialog(frame,
+                "Enter the event the game belongs to",
+                "Enter Event:",
+                JOptionPane.PLAIN_MESSAGE,
+                null,
+                null,
+                "World Championship 1st");
+
+                String site = (String)JOptionPane.showInputDialog(frame,
+                "Enter the location of the game",
+                "Enter Site:",
+                JOptionPane.PLAIN_MESSAGE,
+                null,
+                null,
+                "USA");
+                
+                String date = (String)JOptionPane.showInputDialog(frame,
+                "Enter the date of the game",
+                "Enter Date:",
+                JOptionPane.PLAIN_MESSAGE,
+                null,
+                null,
+                "YYYY.MM.DD");
+                
+                String round = (String)JOptionPane.showInputDialog(frame,
+                "Enter the round number",
+                "Enter Round:",
+                JOptionPane.PLAIN_MESSAGE,
+                null,
+                null,
+                "1");
+                
+                String whiteLastName = (String)JOptionPane.showInputDialog(frame,
+                "Enter white's last name",
+                "Enter White Last Name:",
+                JOptionPane.PLAIN_MESSAGE,
+                null,
+                null,
+                "Last");
+                
+                String whiteFirstName = (String)JOptionPane.showInputDialog(frame,
+                "Enter white's first name and middle initial",
+                "Enter White First Name and Middle Initial:",
+                JOptionPane.PLAIN_MESSAGE,
+                null,
+                null,
+                "First M.");
+                
+                String blackLastName = (String)JOptionPane.showInputDialog(frame,
+                "Enter black's last name",
+                "Enter Black Last Name:",
+                JOptionPane.PLAIN_MESSAGE,
+                null,
+                null,
+                "Last");
+                
+                String blackFirstName = (String)JOptionPane.showInputDialog(frame,
+                "Enter black's first name and middle initial",
+                "Enter Black First Name and Middle Initial:",
+                JOptionPane.PLAIN_MESSAGE,
+                null,
+                null,
+                "First M.");
+                
+                String result = (String)JOptionPane.showInputDialog(frame,
+                "Enter game result",
+                "Enter Result:",
+                JOptionPane.PLAIN_MESSAGE,
+                null,
+                null,
+                "?-?");
+                
+                String eco = (String)JOptionPane.showInputDialog(frame,
+                "Enter ECO",
+                "Enter ECO:",
+                JOptionPane.PLAIN_MESSAGE,
+                null,
+                null,
+                "A11");
+                
+                ChessData.instance().addGame(event, site, date, round, whiteLastName + ", " + whiteFirstName, blackLastName + ", " + blackFirstName, result, eco);
+
                 
             }
         });
