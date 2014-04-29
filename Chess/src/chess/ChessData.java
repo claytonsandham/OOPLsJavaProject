@@ -6,6 +6,7 @@
 
 package chess;
 
+import java.awt.Point;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,6 +24,7 @@ public class ChessData {
        this.Games = new HashMap<>();
        this.Openings = new HashMap<>();
        this.ECOs = new HashMap<>();
+       this.offset = new Point(0,0);
    }
    public static ChessData instance() {
       if(instance == null) {
@@ -37,6 +39,7 @@ public class ChessData {
     Map<String, Game> Games;
     Map<String, Opening> Openings;
     Map<String, String> ECOs;
+    Point offset;
     
     public void addGame(String event, String site, 
             String date, String round, String white, 

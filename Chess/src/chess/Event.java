@@ -12,13 +12,13 @@ import java.util.ArrayList;
  */
 
 public class Event {
-    String name;
+    String id;
 
     ArrayList<String> players;
     ArrayList<String> games;
     public Event(String name, String white, String black, String game)
     {
-        this.name = name;
+        this.id = name;
         this.players = new ArrayList();
         this.players.add(white);
         this.players.add(black);

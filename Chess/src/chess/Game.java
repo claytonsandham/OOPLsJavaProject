@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * @author SANDHAMCR1
  */
 public class Game {
-    String name;
+    String id;
     String event;
     String site;
     String date;
@@ -25,7 +25,7 @@ public class Game {
             String date, String round, String white, 
             String black, String result, String eco)
     {
-        this.name = name;
+        this.id = name;
         this.event = event;
         this.site = site;
         this.date = date;

@@ -8,12 +8,14 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.geom.AffineTransform;
+import java.util.ArrayList;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ChessPanel extends JPanel
 {    
+    public Point offset = new Point(0,0);
     Boolean first = true;
     Boolean animating = false;
     enum Type {PLAYER,EVENT,GAME,OPENING}
@@ -73,12 +75,11 @@ public class ChessPanel extends JPanel
             first = false;   
             bounds = g.getClipBounds();
             center = new Point(bounds.width/2,bounds.height/2);
-            
-            centerBall = new Ball(center, Type.PLAYER, "asdf");
-            for(int i = 0; i < 8; ++i)
-            {
-                sideBalls.add(new Ball(getBranchPoint(i, 8, 200, center), Type.EVENT, "asdf"));
-            }
+       
+            //hardcoded start
+            centerBall = new Ball(center, Type.PLAYER, "Petrosian, Tigran V");
+            createSideBalls(centerBall);
+
         }
         else
         {              
@@ -101,10 +102,7 @@ public class ChessPanel extends JPanel
                     animating = false;
                     centerBall.position = center;
                     //animation stopped
-                    for(int i = 0; i < 8; ++i)
-                    {
-                        sideBalls.add(new Ball(getBranchPoint(i, 8, 200, center), Type.EVENT, "asdf"));
-                    }
+                    createSideBalls(centerBall);
                 }
                 else
                 {
@@ -157,5 +155,38 @@ public class ChessPanel extends JPanel
         double newX = pt[0];
         double newY = pt[1];
         return new Point((int)newX,(int)newY);
+    }
+    
+    public void createSideBalls(Ball centerBall)
+    {
+        switch(centerBall.nodeType)
+        {
+            case PLAYER:
+                Player player = ChessData.instance().Players.get(centerBall.id);
+                ArrayList<String> eventIDs = player.events;
+                int numSideBalls = eventIDs.size();
+                for(int i = 0; i < numSideBalls; ++i)
+                {
+                    sideBalls.add(new Ball(getBranchPoint(i, numSideBalls, 200, center), Type.EVENT, eventIDs.get(i)));
+                    Event tempEvent = ChessData.instance().Events.get(eventIDs.get(i));
+                    ArrayList<String> tempPlayers = tempEvent.players;
+                    if(tempPlayers.get(0).equals(player.id))
+                    {
+                        sideBalls.add(new Ball(getBranchPoint(i, numSideBalls, 400, center), Type.PLAYER, tempPlayers.get(1)));
+                    }
+                    else
+                    {
+                        sideBalls.add(new Ball(getBranchPoint(i, numSideBalls, 400, center), Type.PLAYER, tempPlayers.get(0)));
+                    }
+                }
+                break;
+            case EVENT:
+                break;
+            case GAME:
+                break;
+            case OPENING:
+                break;
+        }
+
     }
 }

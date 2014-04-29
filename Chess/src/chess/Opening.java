@@ -11,12 +11,12 @@ import java.util.ArrayList;
  * @author SANDHAMCR1
  */
 public class Opening {
-    String eco;
+    String id;
     String description;
     ArrayList<String> games;
     public Opening(String eco, String description, String game)
     {
-        this.eco = eco;
+        this.id = eco;
         this.description = description;
         this.games = new ArrayList();
         this.games.add(game);

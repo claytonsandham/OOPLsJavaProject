@@ -36,45 +36,59 @@ public class Ball
             nodeType = nodeType_;
             id = id_;
             
-            eogString = "12a3456789";
-            firstName = "Greg";
-            lastName = "Walters";
-            
-            if(eogString.length() > 13)
-            {
-                int temp = eogString.length() - 13;
-                diameter += (temp * 7);
-            }
-            String larger;
-            if(firstName.length() >= lastName.length())
-            {
-                larger = firstName;
-            }
-            else
-            {
-                larger = lastName;
-            }
-            if(larger.length() > 13)
-            {
-                int temp = larger.length() - 13;
-                diameter += (temp * 7);
-            }
-            
             switch(nodeType)
             {
                 case PLAYER:
                     color = Color.RED;
+                    firstName = id;
+                    lastName = "";
+                    String larger;
+                    if(firstName.length() >= lastName.length())
+                    {
+                        larger = firstName;
+                    }
+                    else
+                    {
+                        larger = lastName;
+                    }
+                    if(larger.length() > 13)
+                    {
+                        int temp = larger.length() - 13;
+                        diameter += (temp * 7);
+                    }
                     break;
                 case EVENT:
                     color = Color.BLACK;
+                    eogString = id;
+                    if(eogString.length() > 13)
+                    {
+                        int temp = eogString.length() - 13;
+                        diameter += (temp * 7);
+                    }
                     break;
                 case GAME:
                     color = Color.GREEN;
+                    eogString = id;
+                    if(eogString.length() > 13)
+                    {
+                        int temp = eogString.length() - 13;
+                        diameter += (temp * 7);
+                    }
                     break;
                 case OPENING:
                     color = Color.BLUE;
+                    eogString = id;
+                    if(eogString.length() > 13)
+                    {
+                        int temp = eogString.length() - 13;
+                        diameter += (temp * 7);
+                    }
                     break;
             }
+            
+
+ 
+            
         }
        
         public void draw(Graphics g)
@@ -118,8 +132,8 @@ public class Ball
             normalY /= distance;
             start.x -= normalX * ((diameter+lineWidth)/2);
             start.y -= normalY * ((diameter+lineWidth)/2);
-            stop.x += normalX * ((diameter+lineWidth)/2);
-            stop.y += normalY * ((diameter+lineWidth)/2);
+            stop.x += normalX * ((other.diameter+lineWidth)/2);
+            stop.y += normalY * ((other.diameter+lineWidth)/2);
             g.drawLine(start.x,start.y,stop.x,stop.y);
         }
         

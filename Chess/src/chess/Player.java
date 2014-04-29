@@ -11,11 +11,11 @@ import java.util.ArrayList;
  * @author SANDHAMCR1
  */
 public class Player {
-    String name;
+    String id;
     ArrayList<String> events;
-    public Player(String name, String event)
+    public Player(String eco, String event)
     {
-        this.name = name;
+        this.id = eco;
         this.events = new ArrayList();
         this.events.add(event);
     }
