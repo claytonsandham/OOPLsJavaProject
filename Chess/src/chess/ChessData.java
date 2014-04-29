@@ -118,4 +118,36 @@ public class ChessData {
             this.ECOs.put(eco, name);
         }
     }
+    public Player getPlayer(String player)
+    {
+        if(this.Players.containsKey(player))
+        {
+            return this.Players.get(player);
+        }
+        else return null;
+    }
+    public Event getEvent(String event)
+    {
+        if(this.Events.containsKey(event))
+        {
+            return this.Events.get(event);
+        }
+        else return null;
+    }
+    public Game getGame(String game)
+    {
+        if(this.Games.containsKey(game))
+        {
+            return this.Games.get(game);
+        }
+        else return null;
+    }
+    public Opening getOpening(String opening)
+    {
+        if(this.Openings.containsKey(opening))
+        {
+            return this.Openings.get(opening);
+        }
+        else return null;
+    }
 }
