@@ -7,6 +7,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.event.MouseEvent;
 import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 import java.util.Vector;
@@ -15,7 +16,7 @@ import java.util.logging.Logger;
 
 public class ChessPanel extends JPanel
 {    
-    public Point offset = new Point(0,0);
+    Point dragRef;
     Boolean first = true;
     Boolean animating = false;
     enum Type {PLAYER,EVENT,GAME,OPENING}
@@ -29,24 +30,34 @@ public class ChessPanel extends JPanel
   
     public ChessPanel() 
     {
-        this.addMouseListener(new java.awt.event.MouseAdapter() 
+        java.awt.event.MouseAdapter ma = new java.awt.event.MouseAdapter() 
         {
-            public void mouseClicked(java.awt.event.MouseEvent evt) 
-            {
-                System.out.println("mouseClicked");
-            }
+
+            @Override
             public void mouseEntered(java.awt.event.MouseEvent evt) 
             {
                 repaint();
                 System.out.println("mouseEntered");
             }
-            public void mouseExited(java.awt.event.MouseEvent evt) 
+
+            @Override
+            public void mouseDragged(java.awt.event.MouseEvent evt) 
             {
-                System.out.println("mouseExited");
+                Point secondPoint = evt.getPoint();
+                Point difference = new Point(dragRef.x - secondPoint.x,dragRef.y - secondPoint.y);
+                ChessData.instance().offset.x -= difference.x;
+                ChessData.instance().offset.y -= difference.y;
+                dragRef = secondPoint;
+                repaint();
+                System.out.println(dragRef);
+                System.out.println("mouseDragged"); 
             }
+            @Override
             public void mousePressed(java.awt.event.MouseEvent evt) 
             {
                 Point temp = evt.getPoint();
+                dragRef = evt.getPoint();
+                System.out.println(temp);
                 for(int i = 0; i < sideBalls.size(); ++i)
                 {
                     if(sideBalls.get(i).collision(temp))
@@ -54,16 +65,16 @@ public class ChessPanel extends JPanel
                         centerBall = sideBalls.get(i);
                         sideBalls.clear();
                         animating = true;
-                        repaint();
                     }
                 }
+                System.out.println(dragRef);
+                repaint();
                 System.out.println("mousePressed");
             }
-            public void mouseReleased(java.awt.event.MouseEvent evt) 
-            {
-                System.out.println("mouseReleased");
-            }
-        });
+        };
+        this.addMouseListener(ma);
+        this.addMouseMotionListener(ma);
+        
     }
     
     public void paint(Graphics g) 
