@@ -23,7 +23,7 @@ public class Ball
         public String id;
         
         public int lineWidth = 3;
-        public int diameter = 100;       
+        public int diameter = 30;       
         public Point position;
         public Color color;
         public String firstName;
@@ -51,43 +51,43 @@ public class Ball
                     {
                         larger = lastName;
                     }
-                    if(larger.length() > 13)
+                    if(larger.length() > 3)
                     {
-                        int temp = larger.length() - 13;
+                        int temp = larger.length() - 3;
                         diameter += (temp * 7);
                     }
                     break;
                 case EVENT:
                     color = Color.BLACK;
                     eogString = id;
-                    if(eogString.length() > 13)
+                    if(eogString.length() > 3)
                     {
-                        int temp = eogString.length() - 13;
+                        int temp = eogString.length() - 3;
                         diameter += (temp * 7);
                     }
                     break;
                 case GAME:
                     color = Color.GREEN;
                     eogString = id;
-                    if(eogString.length() > 13)
+                    int colonLocation = eogString.indexOf(":") + 1;
+                    eogString = eogString.substring(colonLocation);
+                    if(eogString.length() > 3)
                     {
-                        int temp = eogString.length() - 13;
+                        int temp = eogString.length() - 3;
                         diameter += (temp * 7);
                     }
                     break;
                 case OPENING:
                     color = Color.BLUE;
-                    eogString = id;
-                    if(eogString.length() > 13)
+                    eogString = ChessData.instance().Openings.get(id).description;
+
+                    if(eogString.length() > 3)
                     {
-                        int temp = eogString.length() - 13;
+                        int temp = eogString.length() - 3;
                         diameter += (temp * 7);
                     }
                     break;
             }
-            
-
- 
             
         }
        
@@ -139,9 +139,7 @@ public class Ball
         
         public Boolean collision(Point point)
         {
-            point.x += ChessData.instance().offset.x;
-            point.y += ChessData.instance().offset.y;
-            double distance = point.distance(position);
+            double distance = point.distance(new Point(position.x+ChessData.instance().offset.x,position.y+ChessData.instance().offset.y));
             if(distance < ((lineWidth+diameter) / 2))
             {
                 return true;

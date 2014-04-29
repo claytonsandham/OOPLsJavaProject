@@ -9,12 +9,18 @@ package chess;
 import java.awt.Point;
 import java.util.HashMap;
 import java.util.Map;
-
+import java.io.Serializable;
+import java.io.BufferedOutputStream;
+import java.io.BufferedInputStream;
+import java .io.FileOutputStream;
+import java.io.FileInputStream;
+import java.io.ObjectOutputStream;
+import java.io.ObjectInputStream;
 /**
  *
  * @author SANDHAMCR1
  */
-public class ChessData {
+public class ChessData implements Serializable{
    //SINGLETON:
    private static ChessData instance = null;
    protected ChessData() {
@@ -28,11 +34,52 @@ public class ChessData {
    }
    public static ChessData instance() {
       if(instance == null) {
-         instance = new ChessData();
+         instance = ChessData.Open("chess.data");
+         if(instance == null)
+         {
+            instance = new ChessData();
+         }
       }
       return instance;
    }
    //END SINGLETON
+   
+   //Serialization code:
+   public static void Save(String fileName)
+   {
+       try{
+           ObjectOutputStream ooStream =
+                   new ObjectOutputStream(
+                   new FileOutputStream(fileName));
+           ooStream.writeObject(instance);
+           ooStream.flush();
+           ooStream.close();
+       }catch(Exception exc){
+           System.out.println("Save Failed");
+           exc.printStackTrace();
+       }
+   }
+   
+   public static ChessData Open(String fileName)
+   {
+       try{
+           ObjectInputStream oiStream =
+                   new ObjectInputStream(
+                   new FileInputStream(fileName));
+           Object obj;
+           obj = oiStream.readObject();
+           ChessData cd;
+           cd = (ChessData)obj;
+           
+           return cd;
+       }catch(Exception exc){
+           System.out.println("Open failed");
+           exc.printStackTrace();
+           return null;
+       }
+       
+   }
+   //End Serialization code
    //Code Here:
     Map<String, Player> Players;
     Map<String, Event> Events;
@@ -65,7 +112,7 @@ public class ChessData {
             
             if(!this.Players.containsKey(black)) //add black player if not in database;
             {
-                this.Players.put(white, new Player(black, event));
+                this.Players.put(black, new Player(black, event));
             }
             else
             {

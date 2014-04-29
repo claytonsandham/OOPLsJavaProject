@@ -1,4 +1,7 @@
 package chess;
+import static com.sun.java.accessibility.util.AWTEventMonitor.addWindowListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -20,12 +23,22 @@ public class Chess {
      */
     public static void main(String[] args) 
     {
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                System.out.println("WindowClosed");
+                ChessData.Save("chess.data");
+            }
+        });
+
         //sets the initial data table.
         File gameData = new File("WCC.pgn");
         File ecoNames = new File("eco.txt");
         try {
             ParseECOs(ecoNames);
             ParseGames(gameData);
+            ChessData.Save("chess.data");
+
         } catch (IOException ex) {
             Logger.getLogger(Chess.class.getName()).log(Level.SEVERE, null, ex);
         }
