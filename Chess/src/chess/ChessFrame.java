@@ -14,6 +14,7 @@ import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 
 public class ChessFrame extends JFrame 
 {
@@ -30,7 +31,7 @@ public class ChessFrame extends JFrame
         saveMenuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+                ChessData.Save("ChessDataFile.txt");
             }
         });
         fileCategory.add(saveMenuItem);
@@ -54,6 +55,27 @@ public class ChessFrame extends JFrame
         fileCategory.add(exitMenuItem);
         
         menubar.add(fileCategory);
+        
+        JMenu insertCategory = new JMenu("Insert");
+        
+
+        
+        JMenuItem gameMenuItem = new JMenuItem("Game");
+        gameMenuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                final JOptionPane optionPane = new JOptionPane(
+                "The only way to close this dialog is by\n"
+                + "pressing one of the following buttons.\n"
+                + "Do you understand?",
+                JOptionPane.QUESTION_MESSAGE,
+                JOptionPane.YES_NO_OPTION);
+                
+            }
+        });
+        insertCategory.add(gameMenuItem);
+        
+        menubar.add(insertCategory);
         
         setJMenuBar(menubar);
 
