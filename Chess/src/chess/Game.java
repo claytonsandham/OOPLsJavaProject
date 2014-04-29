@@ -5,12 +5,13 @@
  */
 
 package chess;
+import java.io.Serializable;
 import java.util.ArrayList;
 /**
  *
  * @author SANDHAMCR1
  */
-public class Game {
+public class Game implements Serializable{
     String id;
     String event;
     String site;
