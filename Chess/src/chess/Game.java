@@ -11,16 +11,30 @@ import java.util.ArrayList;
  * @author SANDHAMCR1
  */
 public class Game {
+    String name;
     String event;
     String site;
     String date;
-    String roundNo;
+    String round;
     String white;
     String black;
     String result;
     String eco;
-    
-    ArrayList<String> events;
     ArrayList <String> players;
-    ArrayList <String> openings;
+    Game(String name, String event, String site, 
+            String date, String round, String white, 
+            String black, String result, String eco)
+    {
+        this.name = name;
+        this.event = event;
+        this.site = site;
+        this.date = date;
+        this.round = round;
+        this.white = white;
+        this.black = black;
+        this.result = result;
+        this.eco = eco;
+        this.players.add(white);
+        this.players.add(black);
+    }
 }
