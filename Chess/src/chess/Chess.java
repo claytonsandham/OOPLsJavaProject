@@ -25,15 +25,6 @@ public class Chess {
      */
     public static void main(String[] args) 
     {
-        java.awt.EventQueue.invokeLater(new Runnable() 
-        {
-            public void run() 
-            {
-                ChessFrame chessFrame = new ChessFrame();
-                chessFrame.setVisible(true);
-                chessFrame.setResizable(false);
-            }
-        });
         //sets the initial data table.
         File gameData = new File("WCC.pgn");
         File ecoNames = new File("eco.txt");
@@ -47,6 +38,16 @@ public class Chess {
         //read in the old data?
         
         //display the menu -> move into drawing logic
+        java.awt.EventQueue.invokeLater(new Runnable() 
+        {
+            public void run() 
+            {
+                ChessFrame chessFrame = new ChessFrame();
+                chessFrame.setVisible(true);
+                chessFrame.setResizable(false);
+            }
+        });
+
 
     }
 
