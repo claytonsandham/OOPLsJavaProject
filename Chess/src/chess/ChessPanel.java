@@ -217,7 +217,7 @@ public class ChessPanel extends JPanel
                 {
                     if(i < 2)
                     {
-                        sideBalls.add(new Ball(getBranchPoint(i, numberOfSideBalls, 250, center), Type.PLAYER, playerIDs.get(i)));
+                        sideBalls.add(new Ball(getBranchPoint(i, numberOfSideBalls, 200 + (150 * (i+1)), center), Type.PLAYER, playerIDs.get(i)));
                     }
                     else
                     {
