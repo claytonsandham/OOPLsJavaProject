@@ -11,5 +11,7 @@ import java.util.ArrayList;
  * @author SANDHAMCR1
  */
 public class Opening {
+    String eco;
+    String description;
     ArrayList<String> games;
 }
