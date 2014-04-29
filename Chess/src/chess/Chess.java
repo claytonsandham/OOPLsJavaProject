@@ -1,6 +1,4 @@
-
 package chess;
-<<<<<<< HEAD
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -10,30 +8,20 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-=======
 import java.util.HashMap;
 import java.util.Map;
->>>>>>> 7754bfa8c1117e7c19eb7c892463e59f8915974b
 
 /**
  *
  * @author SANDHAMCR1
  */
 public class Chess {
-<<<<<<< HEAD
-    Map<String, Player> Players;
-    Map<String, Player> Events;
-    Map<String, Player> Games;
-    Map<String, Player> Openings;
-=======
->>>>>>> 7754bfa8c1117e7c19eb7c892463e59f8915974b
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) 
     {
-<<<<<<< HEAD
         //sets the initial data table.
         File gameData = new File("WCC.pgn");
         File ecoNames = new File("eco.txt");
@@ -47,8 +35,6 @@ public class Chess {
         //read in the old data?
         
         //display the menu -> move into drawing logic
-=======
->>>>>>> 7754bfa8c1117e7c19eb7c892463e59f8915974b
         java.awt.EventQueue.invokeLater(new Runnable() 
         {
             public void run() 
@@ -58,16 +44,11 @@ public class Chess {
                 chessFrame.setResizable(false);
             }
         });
-<<<<<<< HEAD
 
 
     }
 
     public Chess() {
-        this.Players = new HashMap<>();
-        this.Events = new HashMap<>();
-        this.Games = new HashMap<>();
-        this.Openings = new HashMap<>();
     }
 
     public static void ParseGames(File fin) throws IOException 
@@ -217,12 +198,6 @@ public class Chess {
  
  
  }
-=======
-    }
 
-    public Chess() {
-        
-    }
-    
-}
->>>>>>> 7754bfa8c1117e7c19eb7c892463e59f8915974b
+
+
