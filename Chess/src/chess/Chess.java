@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package chess;
 import java.io.BufferedReader;
@@ -28,7 +23,17 @@ public class Chess {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) 
+    {
+        java.awt.EventQueue.invokeLater(new Runnable() 
+        {
+            public void run() 
+            {
+                ChessFrame chessFrame = new ChessFrame();
+                chessFrame.setVisible(true);
+                chessFrame.setResizable(false);
+            }
+        });
         //sets the initial data table.
         File gameData = new File("WCC.pgn");
         File ecoNames = new File("eco.txt");
@@ -42,7 +47,7 @@ public class Chess {
         //read in the old data?
         
         //display the menu -> move into drawing logic
-        
+
     }
 
     public Chess() {

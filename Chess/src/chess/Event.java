@@ -11,6 +11,7 @@ import java.util.ArrayList;
  * @author SANDHAMCR1
  */
 public class Event {
+    String name;
     ArrayList<String> players;
     ArrayList<String> games;
 }
