@@ -31,18 +31,6 @@ public class ChessPanel extends JPanel
         {
             public void mouseClicked(java.awt.event.MouseEvent evt) 
             {
-                Point temp = evt.getPoint();
-
-                for(int i = 0; i < sideBalls.size(); ++i)
-                {
-                    if(sideBalls.get(i).collision(temp))
-                    {
-                        centerBall = sideBalls.get(i);
-                        sideBalls.clear();
-                        animating = true;
-                        repaint();
-                    }
-                }
                 System.out.println("mouseClicked");
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) 
@@ -56,6 +44,17 @@ public class ChessPanel extends JPanel
             }
             public void mousePressed(java.awt.event.MouseEvent evt) 
             {
+                Point temp = evt.getPoint();
+                for(int i = 0; i < sideBalls.size(); ++i)
+                {
+                    if(sideBalls.get(i).collision(temp))
+                    {
+                        centerBall = sideBalls.get(i);
+                        sideBalls.clear();
+                        animating = true;
+                        repaint();
+                    }
+                }
                 System.out.println("mousePressed");
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) 
@@ -63,16 +62,6 @@ public class ChessPanel extends JPanel
                 System.out.println("mouseReleased");
             }
         });
-    }
-    
-    public Point getBranchPoint(int branchIndex, int totalBranches, double distance, Point center)
-    {
-        double slice = 360 / totalBranches;
-        double[] pt = {center.x, center.y + distance};
-        AffineTransform.getRotateInstance(Math.toRadians(180 + (branchIndex*slice)), center.x, center.y).transform(pt, 0, pt, 0, 1);
-        double newX = pt[0];
-        double newY = pt[1];
-        return new Point((int)newX,(int)newY);
     }
     
     public void paint(Graphics g) 
@@ -103,9 +92,7 @@ public class ChessPanel extends JPanel
                 } catch (InterruptedException ex) {
                     Logger.getLogger(ChessPanel.class.getName()).log(Level.SEVERE, null, ex);
                 }
-
-
-                   
+                
                 int speed = 5;
                 double distance = centerBall.position.distance(center);
                 
@@ -113,17 +100,23 @@ public class ChessPanel extends JPanel
                 {
                     animating = false;
                     centerBall.position = center;
+                    //animation stopped
+                    for(int i = 0; i < 8; ++i)
+                    {
+                        sideBalls.add(new Ball(getBranchPoint(i, 8, 200, center), Type.EVENT, "asdf"));
+                    }
                 }
                 else
                 {
-                     double normalX = centerBall.position.x - center.x;
-                     double normalY = centerBall.position.y - center.y;
-                     normalX /= distance;
-                     normalY /= distance;
 
-                     centerBall.position.x -= normalX * speed;
-                     centerBall.position.y -= normalY * speed; 
-                     repaint();
+                    double normalX = centerBall.position.x - center.x;
+                    double normalY = centerBall.position.y - center.y;
+                    normalX /= distance;
+                    normalY /= distance;
+
+                    centerBall.position.x -= normalX * speed;
+                    centerBall.position.y -= normalY * speed; 
+                    repaint();
                 }   
             }
             else
@@ -156,5 +149,13 @@ public class ChessPanel extends JPanel
         */
     }
     
-
+    public Point getBranchPoint(int branchIndex, int totalBranches, double distance, Point center)
+    {
+        double slice = 360 / totalBranches;
+        double[] pt = {center.x, center.y + distance};
+        AffineTransform.getRotateInstance(Math.toRadians(180 + (branchIndex*slice)), center.x, center.y).transform(pt, 0, pt, 0, 1);
+        double newX = pt[0];
+        double newY = pt[1];
+        return new Point((int)newX,(int)newY);
+    }
 }
