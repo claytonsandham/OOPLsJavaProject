@@ -96,23 +96,23 @@ public class Ball
             Graphics2D g2d = (Graphics2D)g;
             g.setColor(color);
             g2d.setStroke(new BasicStroke(lineWidth));
-            g.drawOval(position.x - (diameter/2),position.y - (diameter/2),diameter,diameter);
+            g.drawOval(position.x - (diameter/2)+ChessData.instance().offset.x,position.y - (diameter/2)+ChessData.instance().offset.y,diameter,diameter);
             
             g.setFont(new Font("Monospaced", Font.PLAIN, 12));
             switch(nodeType)
             {
                 case PLAYER:
-                    g.drawString(firstName, (position.x - (int)(3.5* firstName.length())), position.y-2);
-                    g.drawString(lastName, (position.x - (int)(3.5* lastName.length())), position.y+9);
+                    g.drawString(firstName, (position.x - (int)(3.5* firstName.length()))+ChessData.instance().offset.x, position.y-2+ChessData.instance().offset.y);
+                    g.drawString(lastName, (position.x - (int)(3.5* lastName.length()))+ChessData.instance().offset.x, position.y+9+ChessData.instance().offset.y);
                     break;
                 case EVENT:
-                    g.drawString(eogString, (position.x - (int)(3.5* eogString.length())), position.y+4);
+                    g.drawString(eogString, (position.x - (int)(3.5* eogString.length()))+ChessData.instance().offset.x, position.y+4+ChessData.instance().offset.y);
                     break;
                 case GAME:
-                    g.drawString(eogString, (position.x - (int)(3.5* eogString.length())), position.y+4);
+                    g.drawString(eogString, (position.x - (int)(3.5* eogString.length()))+ChessData.instance().offset.x, position.y+4+ChessData.instance().offset.y);
                     break;
                 case OPENING:
-                    g.drawString(eogString, (position.x - (int)(3.5* eogString.length())), position.y+4);
+                    g.drawString(eogString, (position.x - (int)(3.5* eogString.length()))+ChessData.instance().offset.x, position.y+4+ChessData.instance().offset.y);
                     break;
             }
             
@@ -134,11 +134,13 @@ public class Ball
             start.y -= normalY * ((diameter+lineWidth)/2);
             stop.x += normalX * ((other.diameter+lineWidth)/2);
             stop.y += normalY * ((other.diameter+lineWidth)/2);
-            g.drawLine(start.x,start.y,stop.x,stop.y);
+            g.drawLine(start.x+ChessData.instance().offset.x,start.y+ChessData.instance().offset.y,stop.x+ChessData.instance().offset.x,stop.y+ChessData.instance().offset.y);
         }
         
         public Boolean collision(Point point)
         {
+            point.x += ChessData.instance().offset.x;
+            point.y += ChessData.instance().offset.y;
             double distance = point.distance(position);
             if(distance < ((lineWidth+diameter) / 2))
             {
