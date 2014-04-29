@@ -8,12 +8,19 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import static javax.swing.JFrame.EXIT_ON_CLOSE;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 
 public class ChessPanel extends JPanel
 {    
@@ -31,6 +38,11 @@ public class ChessPanel extends JPanel
   
     public ChessPanel() 
     {
+
+        
+        
+        
+        
         java.awt.event.MouseAdapter ma = new java.awt.event.MouseAdapter() 
         {
 
