@@ -8,8 +8,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  *
@@ -73,6 +71,7 @@ public class Chess {
             {
                 line = line.replace("[Event \"", "");
                 line = line.replace("\"]", "");
+                line = line.trim();
                 
                 event = line;
                 
@@ -85,7 +84,7 @@ public class Chess {
                 
                 line = line.replace("[Site \"", "");
                 line = line.replace("\"]", "");
-                
+                line = line.trim();
                 location = line;
 
                 //System.out.println(line);
@@ -97,7 +96,7 @@ public class Chess {
                 
                 line = line.replace("[Date \"", "");
                 line = line.replace("\"]", "");
-                
+                line = line.trim();
                 date = line;
 
                 //System.out.println(line);
@@ -109,7 +108,7 @@ public class Chess {
                 
                 line = line.replace("[Round \"", "");
                 line = line.replace("\"]", "");
-                
+                line = line.trim();
                 round = line;
 
                 //System.out.println(line);
@@ -121,7 +120,7 @@ public class Chess {
                 
                 line = line.replace("[White \"", "");
                 line = line.replace("\"]", "");
-                
+                line = line.trim();
                 white = line;
 
                 //System.out.println(line);
@@ -133,7 +132,7 @@ public class Chess {
                 
                 line = line.replace("[Black \"", "");
                 line = line.replace("\"]", "");
-                
+                line = line.trim();
                 black = line;
 
                 //System.out.println(line);
@@ -145,7 +144,7 @@ public class Chess {
                 
                 line = line.replace("[Result \"", "");
                 line = line.replace("\"]", "");
-                
+                line = line.trim();
                 result = line;
 
                 //System.out.println(line);
@@ -157,7 +156,7 @@ public class Chess {
                 
                 line = line.replace("[ECO \"", "");
                 line = line.replace("\"]", "");
-                
+                line = line.trim();
                 eco = line;
                 
                 ChessData.instance().addGame(event, location, date, round, white, black, result, eco);
@@ -184,9 +183,9 @@ public class Chess {
         String name = null;
         
 	while ((line = br.readLine()) != null) {
-            eco = line.substring(0,3);
+            eco = line.substring(0,2);
             //skip the whitespace beforethe "name"
-            name = line.substring(5, line.length());
+            name = line.substring(4, line.length());
             
             ChessData.instance().addECO(eco, name);
             line = br.readLine();
