@@ -17,8 +17,11 @@ public class Event {
     public Event(String name, String white, String black, String game)
     {
         this.name = name;
+        this.players = new ArrayList();
         this.players.add(white);
         this.players.add(black);
+        
+        this.games = new ArrayList();
         this.games.add(game);
     }
     public void addPlayer(String player)

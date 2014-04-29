@@ -16,6 +16,7 @@ public class Player {
     public Player(String name, String event)
     {
         this.name = name;
+        this.events = new ArrayList();
         this.events.add(event);
     }
     public void addEvent(String event)

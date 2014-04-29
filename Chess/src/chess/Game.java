@@ -34,6 +34,7 @@ public class Game {
         this.black = black;
         this.result = result;
         this.eco = eco;
+        this.players = new ArrayList();
         this.players.add(white);
         this.players.add(black);
     }

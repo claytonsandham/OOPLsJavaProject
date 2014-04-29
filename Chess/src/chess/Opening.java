@@ -18,6 +18,7 @@ public class Opening {
     {
         this.eco = eco;
         this.description = description;
+        this.games = new ArrayList();
         this.games.add(game);
     }
     public void addGame(String game)

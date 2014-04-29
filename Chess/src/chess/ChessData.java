@@ -24,7 +24,7 @@ public class ChessData {
        this.Openings = new HashMap<>();
        this.ECOs = new HashMap<>();
    }
-   public static ChessData getInstance() {
+   public static ChessData instance() {
       if(instance == null) {
          instance = new ChessData();
       }

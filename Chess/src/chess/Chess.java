@@ -26,8 +26,8 @@ public class Chess {
         File gameData = new File("WCC.pgn");
         File ecoNames = new File("eco.txt");
         try {
-            ParseGames(gameData);
             ParseECOs(ecoNames);
+            ParseGames(gameData);
         } catch (IOException ex) {
             Logger.getLogger(Chess.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -160,7 +160,7 @@ public class Chess {
                 
                 eco = line;
                 
-                //ChessData.instance().addGame(event, site, date, round, white, black, result, eco);
+                ChessData.instance().addGame(event, location, date, round, white, black, result, eco);
             }
             else
             {
@@ -188,7 +188,7 @@ public class Chess {
             //skip the whitespace beforethe "name"
             name = line.substring(5, line.length());
             
-            //ChessData.instance().addECO(eco, name);
+            ChessData.instance().addECO(eco, name);
             line = br.readLine();
             //JPN skips the line of "moves" - as it is unneccesary data
 	}
